@@ -9,9 +9,11 @@ RUN apk add --update curl bash && curl -fsSL https://bin.equinox.io/c/ekMN3bCZFU
 
 RUN echo '0 0 1 * * /usr/bin/certbot renew --no-self-upgrade -n' >> /var/spool/cron/crontabs/root
 
-ADD conf.d/ws.conf /etc/nginx/conf.d/
-ADD Procfile /
-ADD docker-entrypoint.sh /
+ADD conf.d/cuckoo.conf /etc/nginx/conf.d/
+
+ADD Procfile docker-compose.yml docker-entrypoint.sh /
+ADD example.conf /etc/nginx/
+VOLUME ["/etc/nginx/site.d/", "/etc/letsencrypt/", "/var/log/"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["forego", "start", "-r"]
