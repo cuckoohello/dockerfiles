@@ -1,0 +1,2 @@
+nginx: nginx -g "daemon off;"
+crond: crond -f

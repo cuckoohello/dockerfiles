@@ -1,0 +1,16 @@
+version: '2'
+services:
+  web:
+    image: cuckoohello/aria2
+    restart: always
+    volumes:
+      - ./data:/data
+    environment:
+      - UID=1000
+    ports:
+      - 6800:6800
+    container_name: aria2
+networks:
+  default:
+    external:
+      name: service

@@ -1,0 +1,15 @@
+version: '2'
+services:
+  web:
+    image: cuckoohello/rslsync
+    restart: always
+    volumes:
+      - ./data:/data
+    ports:
+      - 55555:55555
+      - 55555:55555/udp
+    container_name: rslsync
+networks:
+  default:
+    external:
+      name: service

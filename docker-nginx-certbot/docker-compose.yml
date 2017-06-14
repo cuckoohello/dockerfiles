@@ -1,0 +1,18 @@
+version: '2'
+services:
+  www:
+    build: .
+    image: nginx-certbot
+    container_name: nginx
+    restart: always
+    volumes:
+      - /data/docker/nginx/config:/etc/nginx
+      - /data/docker/nginx/letsencrypt:/etc/letsencrypt
+      - /data/docker/nginx/log:/var/log/nginx
+    ports:
+      - 80:80
+      - 443:443
+networks:
+  default:
+    external:
+      name: service

@@ -1,0 +1,15 @@
+version: '2'
+services:
+  web:
+    image: cuckoohello/zentao
+    restart: always
+    volumes:
+      - ./mysql:/opt/zbox/data/mysql/
+      - ./www:/opt/zbox/app/zentao/www/data
+    ports:
+      - 8080:80
+    container_name: zentao
+networks:
+  default:
+    external:
+      name: service

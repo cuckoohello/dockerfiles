@@ -1,0 +1,20 @@
+version: '2'
+services:
+  web:
+    image: cuckoohello/netatalk
+    restart: always
+    volumes:
+      - ./data:/data
+    ports:
+      - 548:548
+    environment:
+      - UID=1000
+      - USER=netatalk
+      - PASSWD=netatalk
+      - NAME=DATA
+    container_name: netatalk
+    hostname: SYNC
+networks:
+  default:
+    external:
+      name: service
