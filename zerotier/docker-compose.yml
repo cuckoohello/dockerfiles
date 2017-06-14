@@ -1,0 +1,14 @@
+version: '3'
+services:
+  zerotier:
+    image: zerotier/zerotier-containerized
+    container_name: zerotier
+    restart: always
+    network_mode: "host"
+    devices:
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    volumes:
+      - ./config:/var/lib/zerotier-one

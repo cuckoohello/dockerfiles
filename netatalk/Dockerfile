@@ -31,6 +31,7 @@ RUN apk add --update --no-cache avahi-libs libldap libacl cracklib glib dbus-gli
 EXPOSE 548
 
 COPY entrypoint.sh /
+COPY docker-compose.yml /
 RUN chmod +x /entrypoint.sh
 
 WORKDIR /data

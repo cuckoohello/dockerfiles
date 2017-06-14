@@ -4,5 +4,6 @@ RUN apk add --update --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /
 
 RUN apk add --update --no-cache squid
 COPY conf/squid.conf /etc/squid/squid.conf
+COPY docker-compose.yml /
 CMD [ "/usr/sbin/squid", "-N" ]
 EXPOSE 3128 3130

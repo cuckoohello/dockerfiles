@@ -18,6 +18,7 @@ EXPOSE 8080 55555 55555/udp
 
 COPY rslsync.conf /etc/
 COPY entrypoint.sh /
+COPY docker-compose.yml /
 RUN chmod +x /entrypoint.sh
 
 WORKDIR /data

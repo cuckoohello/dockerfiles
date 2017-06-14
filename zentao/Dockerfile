@@ -14,5 +14,6 @@ RUN mkdir -p /opt/ && curl -fsSL http://dl.cnezsoft.com/zentao/9.2.1/ZenTaoPMS.9
 EXPOSE 80
 
 COPY entrypoint.sh /
+COPY docker-compose.yml /
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

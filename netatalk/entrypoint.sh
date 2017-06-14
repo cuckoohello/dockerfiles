@@ -12,6 +12,7 @@ zeroconf = no
 [$NAME]
 path = /data
 valid users = $USER" >> /etc/afp.conf
+  chown -R $USER:$USER /data
   touch /.initialized_afp
 fi
 
