@@ -1,3 +1,3 @@
 [submodule "docker-freepbx"]
-	path = docker-freepbx
+	path = freepbx
 	url = git@github.com:cuckoohello/docker-freepbx.git
