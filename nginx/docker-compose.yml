@@ -7,7 +7,7 @@ services:
     volumes:
       - ./site.d:/etc/nginx/site.d
       - ./letsencrypt:/etc/letsencrypt
-      - ./log:/var/log
+      - ./log:/var/log/nginx
     ports:
       - 80:80
       - 443:443

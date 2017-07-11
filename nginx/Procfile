@@ -1,2 +1,2 @@
-nginx: mkdir -p /var/log/nginx && nginx -g "daemon off;"
+nginx: nginx -g "daemon off;"
 crond: crond -f
