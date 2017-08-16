@@ -1,7 +1,9 @@
 FROM alpine:edge
 RUN apk add --update --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata
 
-RUN apk add --update --no-cache nginx && mkdir -p /run/nginx
+RUN apk add --update --no-cache nginx nginx-mod-stream && mkdir -p /run/nginx /etc/nginx/stream.d/
+
+RUN echo "stream { include /etc/nginx/stream.d/*.conf; }" >> /etc/nginx/nginx.conf
 
 RUN apk add --update --no-cache py-cffi py-cryptography py-pip && pip install certbot certbot-nginx
 

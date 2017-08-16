@@ -6,6 +6,7 @@ services:
     restart: always
     volumes:
       - ./site.d:/etc/nginx/site.d
+      - ./stream.d:/etc/nginx/stream.d
       - ./letsencrypt:/etc/letsencrypt
       - ./log:/var/log/nginx
     ports:
