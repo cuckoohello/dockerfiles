@@ -15,7 +15,7 @@ ADD conf.d/cuckoo.conf /etc/nginx/conf.d/
 
 ADD Procfile docker-compose.yml docker-entrypoint.sh /
 ADD example.conf /etc/nginx/
-VOLUME ["/etc/nginx/site.d/", "/etc/letsencrypt/", "/var/log/"]
+VOLUME ["/etc/nginx/site.d/", "/etc/nginx/stream.d/", "/etc/letsencrypt/", "/var/log/"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["forego", "start", "-r"]
