@@ -1,0 +1,15 @@
+version: '3'
+services:
+  tinc:
+    image: cuckoohello/tinc
+    container_name: tinc
+    restart: always
+    network_mode: "host"
+    devices:
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    volumes:
+      - ./tinc:/etc/tinc
+    command: ["-D", "-n", "manifold"]
