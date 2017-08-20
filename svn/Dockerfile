@@ -4,7 +4,7 @@ MAINTAINER Yafeng Shan <cuckoo@kokonur.me>
 ENV DEBIAN_FRONTEND noninteractive
 
 # Configure locales and timezone
-RUN locale-gen en_US.UTF-8 && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone
+RUN apt-get update && apt-get install -y tzdata && apt-get clean && locale-gen en_US.UTF-8 && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone
 
 RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list \
   && apt-get update && apt-get install -y apache2 libapache2-mod-svn && apt-get clean && a2enmod headers
