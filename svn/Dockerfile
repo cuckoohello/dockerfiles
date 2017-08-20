@@ -7,7 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y tzdata && apt-get clean && locale-gen en_US.UTF-8 && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone
 
 RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list \
-  && apt-get update && apt-get install -y apache2 libapache2-mod-svn && apt-get clean && a2enmod headers
+  && apt-get update && apt-get install -y apache2 libapache2-mod-svn && apt-get clean
+RUN a2enmod authnz_ldap ldap headers
 
 COPY limit.conf /etc/apache2/conf-enabled/
 
