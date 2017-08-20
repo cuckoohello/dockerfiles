@@ -7,9 +7,11 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN locale-gen en_US.UTF-8 && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone
 
 RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list \
-  && apt-get update && apt-get install -y apache2 libapache2-mod-svn && apt-get clean
+  && apt-get update && apt-get install -y apache2 libapache2-mod-svn && apt-get clean && a2enmod headers
 
 COPY limit.conf /etc/apache2/conf-enabled/
+
+COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 RUN echo www-data > /etc/container_environment/APACHE_RUN_USER
 RUN echo www-data > /etc/container_environment/APACHE_RUN_GROUP
