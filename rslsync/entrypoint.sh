@@ -1,4 +1,5 @@
 #!/bin/sh
+[ -f /init.sh ] && sh /init.sh
 mkdir -p $(jq -r .storage_path /etc/rslsync.conf)
 adduser -u $UID -D -H $SYNC_USER
 chown -R $SYNC_USER:$SYNC_USER /data/

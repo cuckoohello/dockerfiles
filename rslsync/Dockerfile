@@ -5,7 +5,7 @@ ENV UID 1000
 
 RUN apk add --update --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata
 
-RUN apk add --update --no-cache curl tar ca-certificates jq su-exec && \
+RUN apk add --update --no-cache curl tar ca-certificates jq su-exec iptables && \
     curl -LOsS https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
     curl -LsS -o /etc/apk/keys/sgerrand.rsa.pub https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/sgerrand.rsa.pub && \
     apk add glibc-${GLIBC_VERSION}.apk && \
