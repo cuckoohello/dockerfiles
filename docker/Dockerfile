@@ -1,8 +1,21 @@
 FROM docker:dind
+ENV GLIBC_VERSION 2.25-r0
+ENV DOCKER_COMPOSE_VERSION 1.14.0
+
+RUN apk add --update --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata
 
 RUN apk add --update --no-cache curl bash && curl -fsSL https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz | tar xzv -C /usr/local/bin && chmod +x /usr/local/bin/forego
 
 RUN apk add --update --no-cache dropbear dropbear-ssh && mkdir /etc/dropbear && touch /var/log/lastlog &&  mkdir -m 700 -p /root/.ssh
+
+RUN curl -LOsS https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
+    curl -LsS -o /etc/apk/keys/sgerrand.rsa.pub https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/sgerrand.rsa.pub && \
+    apk add glibc-${GLIBC_VERSION}.apk && \
+    rm /etc/apk/keys/sgerrand.rsa.pub glibc-${GLIBC_VERSION}.apk && \
+    ln -s /lib/libz.so.1 /usr/glibc-compat/lib/ && \
+    ln -s /lib/libc.musl-x86_64.so.1 /usr/glibc-compat/lib
+
+RUN  curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 
 ADD Procfile docker-compose.yml docker-entrypoint.sh /
 
