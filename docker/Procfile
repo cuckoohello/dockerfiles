@@ -1,0 +1,2 @@
+docker: dockerd --host=unix:///var/run/docker.sock --storage-driver=vfs
+ssh: dropbear -RFEmga -p 22

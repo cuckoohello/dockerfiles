@@ -1,0 +1,19 @@
+version: '2'
+services:
+  docker:
+    image: cuckoohello/docker
+    container_name: docker
+    privileged: true
+    restart: always
+    dns:
+      - 8.8.8.8
+    volumes:
+      - ./root:/root
+      - ./dropbear:/etc/dropbear
+    networks:
+      default:
+        ipv4_address: 192.168.1.100
+networks:
+  default:
+    external:
+      name: system
