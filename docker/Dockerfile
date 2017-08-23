@@ -6,7 +6,7 @@ RUN apk add --update --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /
 
 RUN apk add --update --no-cache curl bash && curl -fsSL https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz | tar xzv -C /usr/local/bin && chmod +x /usr/local/bin/forego
 
-RUN apk add --update --no-cache dropbear dropbear-ssh && mkdir /etc/dropbear && touch /var/log/lastlog &&  mkdir -m 700 -p /root/.ssh
+RUN apk add --update --no-cache dropbear dropbear-ssh dropbear-scp && mkdir /etc/dropbear && touch /var/log/lastlog &&  mkdir -m 700 -p /root/.ssh
 
 RUN curl -LOsS https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
     curl -LsS -o /etc/apk/keys/sgerrand.rsa.pub https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/sgerrand.rsa.pub && \
