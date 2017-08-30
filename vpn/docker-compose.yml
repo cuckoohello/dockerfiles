@@ -1,0 +1,12 @@
+version: '2'
+services:
+  vpn:
+    image: cuckoohello/vpn
+    container_name: vpn
+    restart: always
+    network_mode: "host"
+    devices:
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
