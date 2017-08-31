@@ -9,7 +9,7 @@ RUN curl -LOsS https://github.com/cuckoohello/dnsmasq-regex/raw/alpine/dnsmasq-r
     apk add --update --no-cache --allow-untrusted dnsmasq-regex-${DNSMASQ_REGEX_VERSION}.apk && \
     rm dnsmasq-regex-${DNSMASQ_REGEX_VERSION}.apk
 
-RUN apk add --update --no-cache openvpn openvpn-auth-ldap ipset iptables
+RUN apk add --update --no-cache openvpn openvpn-auth-pam nss-pam-ldapd ipset iptables
 
 ADD Procfile docker-compose.yml docker-entrypoint.sh /
 
