@@ -9,7 +9,7 @@ RUN curl -LOsS https://github.com/cuckoohello/dnsmasq-regex/raw/alpine/dnsmasq-r
     apk add --update --no-cache --allow-untrusted dnsmasq-regex-${DNSMASQ_REGEX_VERSION}.apk && \
     rm dnsmasq-regex-${DNSMASQ_REGEX_VERSION}.apk
 
-RUN apk add --update --no-cache openvpn openvpn-auth-pam nss-pam-ldapd ipset iptables && echo 'auth      sufficient    pam_ldap.so' > /etc/pam.d/openvpn
+RUN apk add --update --no-cache openvpn openvpn-auth-pam nss-pam-ldapd ipset iptables && printf "auth      sufficient    pam_ldap.so\naccount   sufficient    pam_permit.so" > /etc/pam.d/openvpn
 
 ADD Procfile docker-compose.yml docker-entrypoint.sh /
 
