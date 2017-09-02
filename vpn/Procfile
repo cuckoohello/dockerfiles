@@ -1,3 +1,4 @@
 dnsmasq: dnsmasq --user=dnsmasq --group=dnsmasq --no-daemon
 openvpn: openvpn --config /etc/openvpn/server.conf
 nslcd: nslcd -n
+syslog: syslogd -n -Z
