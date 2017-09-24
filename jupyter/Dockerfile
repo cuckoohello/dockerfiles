@@ -1,8 +1,9 @@
 FROM cuckoohello/pytorch
 ENV USER jupyter
 ENV UID 1000
+ENV ROOT_PASSWORD jupyter
 
-RUN apt-get update && apt-get install -y gosu && apt-get clean && \
+RUN apt-get update && apt-get install --no-install-recommends  -y gosu openssh-client && apt-get clean && \
     pip install jupyter
 COPY entrypoint.sh /
 VOLUME /workspace

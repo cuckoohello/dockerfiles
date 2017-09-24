@@ -8,6 +8,7 @@ services:
     environment:
       - UID=1000
       - USER=jupyter
+      - ROOT_PASSWORD=jupyter
     hostname: cloud
     ports:
       - 8888:8888
