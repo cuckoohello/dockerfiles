@@ -1,0 +1,18 @@
+version: '2'
+services:
+  jupyter:
+    image: cuckoohello/jupyter
+    restart: always
+    volumes:
+      - ./workspace:/workspace
+    environment:
+      - UID=1000
+      - USER=jupyter
+    hostname: cloud
+    ports:
+      - 8888:8888
+    container_name: jupyter
+networks:
+  default:
+    external:
+      name: service
