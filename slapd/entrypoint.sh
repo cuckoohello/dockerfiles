@@ -5,12 +5,12 @@ export OPENLDAP_RUN_PIDFILE="/var/run/slapd/slapd.pid"
 export LDAP_DOMAIN_RDC="$(echo ${LDAP_DOMAIN} | sed 's/^\.//; s/\..*$//')"
 export LDAP_SUFFIX="$(echo dc=$(echo ${LDAP_DOMAIN} | sed 's/^\.//; s/\./,dc=/g'))"
 export LDAP_PASSWORD_ENCRYPTED="$(slappasswd -u -h '{SSHA}' -s ${LDAP_PASSWORD})"
+export LDAP_ADMIN_PASSWORD_ENCRYPTED="$(slappasswd -u -h '{SSHA}' -s ${LDAP_ADMIN_PASSWORD})"
 
 if [[ ! -d ${OPENLDAP_CONFIG_DIR}/cn=config ]]; then
-    mkdir -p ${OPENLDAP_CONFIG_DIR} /var/run/slapd /srv/openldap.d
+    mkdir -p ${OPENLDAP_CONFIG_DIR} /var/run/slapd /srv/openldap.d /var/lib/openldap/openldap-data/ /var/lib/openldap/run/
 
-    cat /etc/openldap/slapd.init.ldif | envsubst > /etc/openldap/slapd.ldif
-    cat /etc/openldap/ldap.init.conf | envsubst > /etc/openldap/ldap.conf
+    cat /srv/openldap/slapd.init.ldif | envsubst > /etc/openldap/slapd.ldif
 
     slapadd -n0 -F ${OPENLDAP_CONFIG_DIR} -l /etc/openldap/slapd.ldif > /var/log/slapd.ldif.log
 
@@ -18,7 +18,7 @@ if [[ ! -d ${OPENLDAP_CONFIG_DIR}/cn=config ]]; then
 
     if [[ -d /srv/openldap.d ]]; then
         if [[ ! -s /srv/openldap.d/000-domain.ldif ]]; then
-            cat /etc/openldap/domain.init.ldif | envsubst > /srv/openldap.d/000-domain.ldif
+            cat /srv/openldap/domain.init.ldif | envsubst > /srv/openldap.d/000-domain.ldif
         fi
 
         slapd_exe=$(which slapd)

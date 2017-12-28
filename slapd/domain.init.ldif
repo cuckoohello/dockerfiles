@@ -18,6 +18,38 @@ dn: ou=users,${LDAP_SUFFIX}
 objectClass: organizationalUnit
 ou: users
 
+dn: uid=${LDAP_ADMIN_USERNAME},ou=users,${LDAP_SUFFIX}
+cn: ${LDAP_ADMIN_USERNAME}
+sn: ${LDAP_ADMIN_USERNAME}
+uid: ${LDAP_ADMIN_USERNAME}
+homeDirectory: /home/${LDAP_ADMIN_USERNAME}
+objectClass: inetOrgPerson
+objectClass: ldapPublicKey
+objectClass: organizationalPerson
+objectClass: person
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: top
+uidNumber: 2000
+gidNumber: 2000
+userPassword: ${LDAP_ADMIN_PASSWORD_ENCRYPTED}
+
 dn: ou=groups,${LDAP_SUFFIX}
 objectClass: organizationalUnit
 ou: groups
+
+dn: cn=ldap,ou=groups,${LDAP_SUFFIX}
+cn: ldap
+gidNumber: 2000
+objectClass: adminGroup
+objectClass: posixGroup
+objectClass: top
+
+dn: cn=admin,ou=groups,${LDAP_SUFFIX}
+cn: admin
+gidNumber: 2001
+objectClass: adminGroup
+objectClass: posixGroup
+objectClass: top
+adminUid: ${LDAP_ADMIN_USERNAME}
+memberUid: ${LDAP_ADMIN_USERNAME}

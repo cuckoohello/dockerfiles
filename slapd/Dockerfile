@@ -3,6 +3,8 @@ FROM alpine:3.7
 ENV LDAP_DOMAIN example.com
 ENV LDAP_PASSWORD password
 ENV LDAP_ORGANIZATION example
+ENV LDAP_ADMIN_USERNAME admin
+ENV LDAP_ADMIN_PASSWORD password
 
 ENV OPENLDAP_VERSION=2.4.45
 
@@ -47,10 +49,12 @@ RUN apk add --update --no-cache gettext ldapvi libintl unixodbc libssl1.0 libltd
       && apk del .build-deps \
       && addgroup -S ldap 2>/dev/null \
       && adduser -S -D -H -h /usr/lib/openldap -s /sbin/nologin -G ldap -g "OpenLdap User" ldap 2>/dev/null \
-      && chown -vR ldap:ldap /etc/openldap /var/lib/openldap
+      && chown -vR ldap:ldap /etc/openldap /var/lib/openldap \
+      && rm /etc/openldap/slapd.ldif* /etc/openldap/slapd.conf* /etc/openldap/ldap.conf*
 
 COPY schema/ /etc/openldap/schema/
-COPY domain.init.ldif ldap.init.conf slapd.init.ldif /etc/openldap/
+COPY ldap.conf /etc/openldap/
+COPY domain.init.ldif slapd.init.ldif /srv/openldap/
 COPY entrypoint.sh /
 
 VOLUME ["/etc/openldap/slapd.d", "/var/lib/openldap"]
