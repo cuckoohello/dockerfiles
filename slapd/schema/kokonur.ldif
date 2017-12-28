@@ -1,0 +1,15 @@
+dn: cn=kokonur,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: kokonur
+olcAttributeTypes: ( 43532.3.6.1.1.1.1.1
+    NAME 'adminUid'
+    EQUALITY caseExactIA5Match
+    SUBSTR caseExactIA5SubstringsMatch
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcObjectClasses: ( 43532.3.6.1.1.1.2.1
+    NAME 'adminGroup'
+    DESC 'AdminGroup with adminUid and memberUid'
+    SUP top
+    AUXILIARY
+    MAY ( adminUid $ memberUid )
+    )
