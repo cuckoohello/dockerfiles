@@ -50,7 +50,8 @@ RUN apk add --update --no-cache gettext ldapvi libintl unixodbc libssl1.0 libltd
       && addgroup -S ldap 2>/dev/null \
       && adduser -S -D -H -h /usr/lib/openldap -s /sbin/nologin -G ldap -g "OpenLdap User" ldap 2>/dev/null \
       && chown -vR ldap:ldap /etc/openldap /var/lib/openldap \
-      && rm /etc/openldap/slapd.ldif* /etc/openldap/slapd.conf* /etc/openldap/ldap.conf*
+      && rm /etc/openldap/slapd.ldif* /etc/openldap/slapd.conf* /etc/openldap/ldap.conf* \
+      && mkdir -p /var/run/slapd/ && chown ldap:ldap /var/run/slapd/
 
 COPY schema/ /etc/openldap/schema/
 COPY ldap.conf /etc/openldap/
