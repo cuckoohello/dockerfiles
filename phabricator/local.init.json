@@ -1,0 +1,13 @@
+{
+    "mysql.host": "${MYSQL_HOST}",
+    "mysql.user": "${MYSQL_USER}",
+    "mysql.pass": "${MYSQL_PASS}",
+    "phabricator.base-uri": "${PHABRICATOR_URL}",
+    "diffusion.ssh-user": "git",
+    "phd.user": "git",
+    "diffusion.ssh-port": ${SSH_PORT},
+    "repository.default-local-path": "/srv/repo",
+    "phabricator.timezone": "${TZ}",
+    "storage.local-disk.path": "/srv/data",
+    "mysql.port": "${MYSQL_PORT}"
+}

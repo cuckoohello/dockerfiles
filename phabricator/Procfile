@@ -1,0 +1,3 @@
+phabricator: bash -c "/home/git/phacility/phabricator/bin/phd start && tail -f /dev/null"
+sshd: /usr/sbin/sshd -D -f /etc/ssh/sshd_config.phabricator
+apache: bash -c "source /etc/apache2/envvars && apache2 -DFOREGROUND"
