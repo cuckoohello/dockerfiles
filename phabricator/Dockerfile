@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update  \
-      && apt-get install -y --no-install-recommends curl tzdata sendmail openssh-server python-pygments gettext-base php5 php5-mysql php5-ldap php5-gd php5-curl php-apc php5-cli php5-json php-apc git-core ca-certificates libapache2-mod-php5 \
+      && apt-get install -y --no-install-recommends curl tzdata openssh-server python-pygments gettext-base php5 php5-mysql php5-ldap php5-gd php5-curl php-apc php5-cli php5-json php-apc git-core ca-certificates libapache2-mod-php5 \
       && a2enmod rewrite \
       && adduser --disabled-login --gecos 'Phabricator' git && passwd -d git \
       && rm /etc/apache2/sites-enabled/000-default.conf \
@@ -18,13 +18,13 @@ COPY phabricator.conf /etc/apache2/sites-enabled/
 COPY entrypoint.sh update.sh local.init.json preamble.php Procfile /
 COPY sshd/phabricator-ssh-hook.sh sshd/sshd_config.phabricator /etc/ssh/
 
-ENV MYSQL_HOST 127.0.0.1
-ENV MYSQL_USER root
-ENV MYSQL_PASS password
-ENV PHABRICATOR_URL http://git.infervision.com
+ENV PHABRICATOR_URL http://git.example.com
+ENV MYSQL_HOST=127.0.0.1 MYSQL_USER=root MYSQL_PASS=password MYSQL_HOST=3306
 ENV SSH_PORT 2222
-ENV MYSQL_PORT 3306
 ENV TZ Asia/Shanghai
+
+ENV ONE_MAIL_PER_RECIPIENT true
+ENV SMTP_USER=noreply@example.com SMTP_PASSWORD=password SMTP_PROTOCOL=ssl SMTP_HOST=smtp.example.com SMTP_PORT=465
 
 VOLUME /srv
 
