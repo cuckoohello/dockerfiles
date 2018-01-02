@@ -1,5 +1,6 @@
 {
     "metamta.mail-adapter": "PhabricatorMailImplementationPHPMailerAdapter",
+    "security.require-https": ${REQUIRE_HTTPS},
     "environment.append-paths": [
       "/usr/lib/git-core"
     ],
