@@ -7,6 +7,8 @@ export LDAP_SUFFIX="$(echo dc=$(echo ${LDAP_DOMAIN} | sed 's/^\.//; s/\./,dc=/g'
 export LDAP_PASSWORD_ENCRYPTED="$(slappasswd -u -h '{SSHA}' -s ${LDAP_PASSWORD})"
 export LDAP_ADMIN_PASSWORD_ENCRYPTED="$(slappasswd -u -h '{SSHA}' -s ${LDAP_ADMIN_PASSWORD})"
 
+sed -i "s/LDAP_SUFFIX/$LDAP_SUFFIX/g" /etc/openldap/ldap.conf
+
 if [[ ! -d ${OPENLDAP_CONFIG_DIR}/cn=config ]]; then
     mkdir -p ${OPENLDAP_CONFIG_DIR} /var/run/slapd /srv/openldap.d /var/lib/openldap/openldap-data/ /var/lib/openldap/run/
 
