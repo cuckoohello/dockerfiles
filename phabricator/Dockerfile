@@ -11,6 +11,8 @@ RUN apt-get update  \
       && sed -i 's/;always_populate_raw_post_data.*/always_populate_raw_post_data = -1/g' /etc/php5/apache2/php.ini \
       && sed -i 's/;opcache.validate_timestamps=.*/opcache.validate_timestamps=0/g' /etc/php5/apache2/php.ini \
       && rm -rf /etc/ssh/* \
+      && ln -s /usr/lib/git-core/git-http-backend /usr/bin/git-http-backend \
+      && echo 'www-data ALL=(git) SETENV: NOPASSWD: /usr/bin/git-upload-pack, /usr/lib/git-core/git-http-backend' >> /etc/sudoers \
       && curl -fsSL https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz | tar xzv -C /usr/local/bin && chmod +x /usr/local/bin/forego \
       && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -25,6 +27,9 @@ ENV TZ Asia/Shanghai
 
 ENV ONE_MAIL_PER_RECIPIENT true
 ENV SMTP_USER=noreply@example.com SMTP_PASSWORD=password SMTP_PROTOCOL=ssl SMTP_HOST=smtp.example.com SMTP_PORT=465
+
+ENV ALLOW_GIT_LFS true
+ENV SHOW_PROTOTYPES true
 
 VOLUME /srv
 

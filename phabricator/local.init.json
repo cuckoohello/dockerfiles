@@ -19,5 +19,7 @@
     "repository.default-local-path": "/srv/repo",
     "phabricator.timezone": "${TZ}",
     "storage.local-disk.path": "/srv/data",
+    "diffusion.allow-git-lfs": ${ALLOW_GIT_LFS},
+    "phabricator.show-prototypes": ${SHOW_PROTOTYPES},
     "mysql.port": "${MYSQL_PORT}"
 }
