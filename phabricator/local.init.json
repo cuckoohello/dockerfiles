@@ -1,5 +1,8 @@
 {
     "metamta.mail-adapter": "PhabricatorMailImplementationPHPMailerAdapter",
+    "environment.append-paths": [
+      "/usr/lib/git-core"
+    ],
     "metamta.one-mail-per-recipient": ${ONE_MAIL_PER_RECIPIENT},
     "metamta.default-address": "${SMTP_USER}",
     "phpmailer.smtp-password": "${SMTP_PASSWORD}",
@@ -21,5 +24,6 @@
     "storage.local-disk.path": "/srv/data",
     "diffusion.allow-git-lfs": ${ALLOW_GIT_LFS},
     "phabricator.show-prototypes": ${SHOW_PROTOTYPES},
+    "files.enable-imagemagick": ${ENABLE_IMAGEMAGIC},
     "mysql.port": "${MYSQL_PORT}"
 }
