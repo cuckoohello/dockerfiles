@@ -29,9 +29,11 @@ objectClass: organizationalPerson
 objectClass: person
 objectClass: posixAccount
 objectClass: shadowAccount
+objectClass: sambaSamAccount
 objectClass: top
 uidNumber: 2000
 gidNumber: 2000
+sambaSID: S-1-5-21-1528920847-3529959213-2931869277-2000
 userPassword: ${LDAP_ADMIN_PASSWORD_ENCRYPTED}
 
 dn: ou=groups,${LDAP_SUFFIX}

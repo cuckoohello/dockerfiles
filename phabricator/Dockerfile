@@ -20,7 +20,7 @@ COPY entrypoint.sh update.sh local.init.json preamble.php Procfile /
 COPY sshd/phabricator-ssh-hook.sh sshd/sshd_config.phabricator /etc/ssh/
 
 ENV PHABRICATOR_URL http://git.example.com
-ENV MYSQL_HOST=127.0.0.1 MYSQL_USER=root MYSQL_PASS=password MYSQL_HOST=3306
+ENV MYSQL_HOST=127.0.0.1 MYSQL_USER=root MYSQL_PASS=password MYSQL_PORT=3306
 ENV SSH_PORT 2222
 ENV TZ Asia/Shanghai
 
