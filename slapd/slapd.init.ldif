@@ -45,6 +45,7 @@ include: file:///etc/openldap/schema/inetorgperson.ldif
 include: file:///etc/openldap/schema/ppolicy.ldif
 include: file:///etc/openldap/schema/kokonur.ldif
 include: file:///etc/openldap/schema/openssh-lpk-openldap.ldif
+include: file:///etc/openldap/schema/samba.ldif
 
 # Load module
 dn: cn=module{0},cn=config
