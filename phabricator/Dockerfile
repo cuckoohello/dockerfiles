@@ -13,6 +13,7 @@ RUN apt-get update  \
       && rm -rf /etc/ssh/* \
       && echo 'www-data ALL=(git) SETENV: NOPASSWD: /usr/bin/git-upload-pack, /usr/lib/git-core/git-http-backend, /usr/bin/hg' >> /etc/sudoers \
       && curl -fsSL https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz | tar xzv -C /usr/local/bin && chmod +x /usr/local/bin/forego \
+      && curl -fsSL http://deb.nodesource.com/setup_6.x | bash && apt-get install -y nodejs \
       && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY phabricator.conf /etc/apache2/sites-enabled/
@@ -31,6 +32,8 @@ ENV ALLOW_GIT_LFS true
 ENV SHOW_PROTOTYPES true
 ENV ENABLE_IMAGEMAGIC true
 ENV REQUIRE_HTTPS true
+
+ENV NOTIFICATION_CLIENT_PATH /ws/
 
 VOLUME /srv
 

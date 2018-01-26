@@ -13,6 +13,21 @@
     "phpmailer.smtp-host": "${SMTP_HOST}",
     "phpmailer.mailer": "smtp",
     "pygments.enabled": true,
+    "notification.servers": [
+      {
+        "type": "client",
+        "host": "${NOTIFICATION_CLIENT_HOST}",
+        "port": ${NOTIFICATION_CLIENT_PORT},
+        "protocol": "${NOTIFICATION_CLIENT_PROTOCOL}",
+        "path": "${NOTIFICATION_CLIENT_PATH}"
+      },
+      {
+        "type": "admin",
+        "host": "127.0.0.1",
+        "port": 22281,
+        "protocol": "http"
+      }
+    ],
     "mysql.host": "${MYSQL_HOST}",
     "mysql.user": "${MYSQL_USER}",
     "mysql.pass": "${MYSQL_PASS}",
