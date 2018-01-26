@@ -1,8 +1,8 @@
-FROM alpine:3.5
+FROM alpine:3.7
 
-RUN apk add --update --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata
+ENV TZ Asia/Shanghai
 
-RUN apk add --update --no-cache squid libldap
+RUN apk add --update --no-cache tzdata squid libldap
 COPY conf/squid.conf /etc/squid/squid.conf
 COPY basic_ldap_auth /usr/lib/squid/
 COPY docker-compose.yml /
