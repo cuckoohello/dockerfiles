@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-mkdir -p /srv/data /srv/repo /srv/ssh /var/tmp/phd/pid/ /var/run/sshd && chmod 777 /var/tmp/phd/pid/ && chown www-data:www-data /srv/data && chown git:git /srv/repo
+mkdir -p /srv/data /srv/repo /srv/ssh /var/tmp/phd/pid/ /var/tmp/phd/log/ /var/run/sshd && chown www-data:www-data /srv/data && chown git:git /srv/repo && chown -R git:git /var/tmp/phd
 touch /var/log/aphlict.log && chown git:git /var/log/aphlict.log
 
 generate_ssh_key() {
