@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update  \
-      && apt-get install -y --no-install-recommends mercurial subversion curl imagemagick tzdata openssh-server python-pygments gettext-base php5 php5-mysql php5-ldap php5-gd php5-curl php-apc php5-cli php5-json php-apc git-core ca-certificates libapache2-mod-php5 \
+      && apt-get install -y --no-install-recommends mercurial subversion curl imagemagick tzdata openssh-server python-pygments gettext-base php5 php5-mysqlnd php5-ldap php5-gd php5-curl php-apc php5-cli php5-json php-apc git-core ca-certificates libapache2-mod-php5 \
       && a2enmod rewrite \
       && adduser --disabled-login --gecos 'Phabricator' git && passwd -d git \
       && rm /etc/apache2/sites-enabled/000-default.conf \
