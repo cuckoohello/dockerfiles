@@ -99,6 +99,9 @@ olcAccess: to attrs=userPassword
 olcAccess: to attrs=shadowLastChange
   by self write
   by * read
+olcAccess: to attrs=sshPublicKey
+  by self write
+  by * read
 # The admin dn (olcRootDN) bypasses ACLs and so has total access,
 # everyone else can read everything.
 olcAccess: to *
